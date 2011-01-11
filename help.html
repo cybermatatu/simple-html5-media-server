@@ -1,0 +1,92 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" class="text/css" href="<?php
+include 'cms.config';
+print $stylesheet;
+?>">
+<script type="text/javascript" src="cms.js"></script>
+
+</head>
+
+<body>
+
+<p>Simple PHP Video CMS / Media Server, v0.1</p>
+
+<p>(c) 2011, Frank Lynam, frank@lynam.net</p>
+
+<p>Contents :</p>
+
+<ul style="list-style:none;">
+
+<li><a class="file" href="#about">About</a></li>
+<ul>
+<li><a class="file" href="#need">Need</a></li>
+<li><a class="file" href="#designgoal">Design Goal</a></li>
+<li><a class="file" href="#videoformats">Video Formats</a></li>
+<li><a class="file" href="#crossbrowsersupport">Cross-Browser Support</a></li>
+</ul>
+
+<li><a class="file" href="#setup">Set-up and Use</a></li>
+<ul>
+<li><a class="file" href="#apacheandphp">Apache and PHP</a></li>
+<li><a class="file" href="#channels">Channels</a></li>
+<li><a class="file" href="#playback">Playback</a></li>
+</ul>
+
+</ul>
+
+<p><a class="file" name="about">About</a></p>
+
+<p><a class="file" name="need"> - Need</a></p>
+
+<p>I wanted a nice media server/client system for my movies and videos, but all the DLNA/UPnP systems sucked. A lot. They're all CPU hogs with glitzy graphics, and none of them are cross-platform or compatible with eachother. So I figured HTML would be a much more reliable solution.</p>
+
+<p><a class="file" name="designgoal"> - Design Goal</a></p>
+
+<p>My specific needs were to let any laptop on my network watch shows, and to continue to let my PS3 Media Server system work without transcoding. </p>
+
+<p><a class="file" name="videoformats"> - Video Formats</a></p>
+
+<p>The laptop requirement limits me to either HTML5 standard formats or flv. flv sucks, so I have to use HTML5. Chrome works on virtually any platform and supports MP4, Theora and VP8.</p>
+
+<p>The PS3 only supports AVI and MP4 (h.264/AAC). The Sony website explicitly mentions the mp4 extension. This is my most limiting factor, so I commited specifically to MP4. It will also display files with the ogv and webm extensions, but it is primarily for MP4 encoded files with the mp4 extension.</p>
+
+<p><a class="file" name="crossbrowsersupport"> - Cross-Browser Support</a></p>
+
+<p>Since Chrome works anywhere and supports the format I need, this has only been tested in Chrome 9.0.597.</p>
+
+<p><a class="file" name="setup">Set-up and Use</a></p>
+
+<p><a class="file" name="apacheandphp"> - Apache and PHP</a></p>
+
+<p>You hopefully have Apache and PHP up and running by this point. If not, you can find them online. Make certain you enable the PHP module for Apache, and add "html" as a type for PHP to parse. Instructions for this are available online. Obviously, Apache isn't strictly necessary, but this has only been tested on Apache 2.2 with PHP 5.</p>
+
+<p><a class="file" name="channels"> - Channels</a></p>
+
+<p>The channels should display along the top like the help button does. These will be based on the folders available in the folder these html files are in. It will list each of them as a channel, and allow each to be browsed individually.</p>
+
+<p>The idea of this program is to simply use your existing folder structure to sort your media. No databases are used, or special formats or metadata. It just reads your files. Nothing extra.</p>
+
+<p>Under *nix, you should use a symbolic link to create links to your media folders. If you're unfamiliar with how to do this, type "man ln" at a console. I have great confidence you'll figure it out. This method should work under OSX as well.</p>
+
+<p>Under Windows 7, you can create a symbolic link to a directory by launching a command prompt, navigating to your httpd root directory and using the command "mklink." Read its help for more information there. Since I'm on Windows 7 and my media files are spread across several large drives, this is the method I use, so I know it works.</p>
+
+<p>If you have an older version of Windows, I don't know what options are or are not available. I know that NTFS has the functionality to map drives to folders as well as drive letters, so that's a possible solution. Check under the administrative tools for your drives for this.</p>
+
+<p>The easiest solution is to point your http server to the base of your media folders and put these files there. This is probably also the least secure, bue since this is a local media server system, who cares?</p>
+
+<p><a class="file" name="Playback"> - Playback</a></p>
+
+<p>Once you've selected a channel, as discussed above, you can navigate through folders (green in the default stylesheet) and select files (grey in the default stylesheet) to watch directly in the browser. There are two modes of playback, in the main window or in a new window.</p>
+
+<p>If you click on a filename, it will load at the bottom of the main page. If you scroll all the way down, it will display the video scaled properly to the window, with black bars across the top and bottom if necessary. The only problem is there will be a scrollbar on the side. There's no simple, convenient and reliable way to fix that.</p>
+
+<p>Thus the second option. If you click the [-] symbol next to a file, it will load in a new tab and automatically begin playing. All you need to do is hit F11 (or Shift+Command+F on Mac) to make it full screen. There's no scrollbars, so it looks like it's a fullscreen video. Because it is. This is all really just a hack because Chrome has not implemented fullscreen HTML5 video yet. The hack is kept simple because, hey, that's the whole point here.</p>
+
+<p>It's possible to do this with VLC, or to use special plugins so more formats work, or whatever. But that's not the point. The point is something that works fast and well and simple cross-platform. HTML5 in Chrome does that. All someone needs to access this media server is an HTML5 compliant browser that supports MP4.</p>
+
+</body>
+
+</html>
